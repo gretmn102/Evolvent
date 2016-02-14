@@ -1,0 +1,14 @@
+C:\Download\peach\Tolerance\Parse\bin\Debug\Parse.XML
+C:\Download\peach\Tolerance\Parse\bin\Debug\Parse.exe
+C:\Download\peach\Tolerance\Parse\bin\Debug\Parse.pdb
+C:\Download\peach\Tolerance\Parse\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Download\peach\Tolerance\Parse\obj\x86\Debug\Parse.exe
+C:\Download\peach\Tolerance\Parse\obj\x86\Debug\Parse.pdb
+d:\Chief\Tolerance\Parse\bin\Debug\Parse.XML
+d:\Chief\Tolerance\Parse\bin\Debug\Parse.exe
+d:\Chief\Tolerance\Parse\bin\Debug\Parse.pdb
+d:\Chief\Tolerance\Parse\bin\Debug\FSharp.Core.dll
+d:\Chief\Tolerance\Parse\bin\Debug\FSharp.Core.xml
+d:\Chief\Tolerance\Parse\bin\Debug\ru\FSharp.Core.resources.dll
+d:\Chief\Tolerance\Parse\obj\x86\Debug\Parse.exe
+d:\Chief\Tolerance\Parse\obj\x86\Debug\Parse.pdb
