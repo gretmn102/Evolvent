@@ -1,0 +1,5 @@
+D:\Mydoc\Programing\Project\Interface\Interface\bin\Debug\Interface.exe
+D:\Mydoc\Programing\Project\Interface\Interface\bin\Debug\Interface.pdb
+D:\Mydoc\Programing\Project\Interface\Interface\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Mydoc\Programing\Project\Interface\Interface\obj\x86\Debug\Interface.exe
+D:\Mydoc\Programing\Project\Interface\Interface\obj\x86\Debug\Interface.pdb
