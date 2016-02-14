@@ -34,7 +34,7 @@ let getDB _ =
                         t.Join()
                         r
                     | None -> ""
-
+                    
 checkBox1.AutoSize <- true;
 checkBox1.Location <- new System.Drawing.Point(241, 173);
 //checkBox1.Name <- "checkBox2";
@@ -205,3 +205,4 @@ let Main args =
     //CsvParse.main
     Application.Run(form)
     0
+    

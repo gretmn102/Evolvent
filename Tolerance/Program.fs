@@ -42,7 +42,6 @@ type Table(file:string) =
                                         | false, _ -> failwithf "не распознано число %s" str
                                         | true, r -> r
                                     (p range.[0], p range.[1]), i)
-    
     let db =
         f
         |> List.tail

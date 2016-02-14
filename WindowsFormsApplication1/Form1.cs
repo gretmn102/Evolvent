@@ -15,5 +15,11 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            var code = keyData & Keys.KeyCode;
+            if (code == Keys.Enter) { }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }

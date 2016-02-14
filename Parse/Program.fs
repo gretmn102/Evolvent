@@ -31,7 +31,7 @@ let main args =
     let range =
         columns
         |> List.tail
-        |> List.map (fun x -> List.head x)
+        |> List.map (List.head)
         |> f
         |> List.map (function
                          | S("", "") -> ""
@@ -43,8 +43,8 @@ let main args =
     let values =
         columns
         |> List.tail
-        |> List.map (fun x -> List.tail x)
-        |> List.map (fun x -> f x)
+        |> List.map (List.tail)
+        |> List.map f
 
  
     let values2 =
@@ -54,7 +54,6 @@ let main args =
                     x |> List.mapi (fun j y -> 
                         if j < 36 then
                             match y with
-                            | None -> y
                             | Up -> 
                                 let rec f'' i = 
                                     let current = (values.[i]).[j]
@@ -63,29 +62,22 @@ let main args =
                                     else
                                         current
                                 f'' i
-                                
-                            | a -> a
+                            | _ -> y
                         else
                             y))
-        values.Head :: (values |> f')
+        values.Head :: ( f' values )
 
     let values3 =
         values2
-        |> List.map (fun x ->
-                        x |> List.map
-                                    (fun x ->
-                                        let form =
-                                            function
-                                            | "" -> ""
-                                            | s -> 
-                                                let n = Double.Parse(s) / 1000.0
-                                                if n > 0.0 then
-                                                    "+" + n.ToString()
-                                                else
-                                                    n.ToString()
-                                        
+        |> List.map (List.map (fun x ->
                                         let erase a b = 
                                             //a + " " + b
+                                            let form =
+                                                function
+                                                | "" -> ""
+                                                | s -> 
+                                                    let n = Double.Parse(s) / 1000.0
+                                                    if n > 0.0 then "+" + n.ToString() else n.ToString()
                                             String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", form a, form b)
                                         
                                         match x with
@@ -97,14 +89,12 @@ let main args =
                                         | _ -> //"Up"
                                             failwith "откуда-то взялся UP"
                                             ))
-         
+
     let other =
-        let rowf x = 
-            x |> List.reduce (fun x1 x2 -> x1 + "\t" + x2)
+        let rowf = List.reduce (fun x1 x2 -> x1 + "\t" + x2)
         let t = values3 |> List.mapi (fun i x -> range.[i] :: x)
         qual :: t
         |> List.map rowf
-    
-    
+
     File.WriteAllLines ("input.txt", other)
     0
