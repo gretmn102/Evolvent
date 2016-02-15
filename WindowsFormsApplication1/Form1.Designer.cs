@@ -28,103 +28,114 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblRange = new System.Windows.Forms.Label();
+            this.rbPoint = new System.Windows.Forms.RadioButton();
+            this.rbComma = new System.Windows.Forms.RadioButton();
+            this.chkTable = new System.Windows.Forms.CheckBox();
+            this.cmbQual = new System.Windows.Forms.ComboBox();
+            this.txbRange = new System.Windows.Forms.TextBox();
+            this.lblQual = new System.Windows.Forms.Label();
+            this.btn = new System.Windows.Forms.Button();
+            this.txbOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // lblRange
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Размер";
+            this.lblRange.AutoSize = true;
+            this.lblRange.Location = new System.Drawing.Point(9, 18);
+            this.lblRange.Name = "lblRange";
+            this.lblRange.Size = new System.Drawing.Size(46, 13);
+            this.lblRange.TabIndex = 0;
+            this.lblRange.Text = "Размер";
             // 
-            // radioButton1
+            // rbPoint
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 120);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbPoint.AutoSize = true;
+            this.rbPoint.Checked = true;
+            this.rbPoint.Location = new System.Drawing.Point(12, 111);
+            this.rbPoint.Name = "rbPoint";
+            this.rbPoint.Size = new System.Drawing.Size(132, 17);
+            this.rbPoint.TabIndex = 3;
+            this.rbPoint.Text = "Разделитель \"точка\"";
+            this.rbPoint.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbComma
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(15, 143);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbComma.AutoSize = true;
+            this.rbComma.Location = new System.Drawing.Point(12, 134);
+            this.rbComma.Name = "rbComma";
+            this.rbComma.Size = new System.Drawing.Size(145, 17);
+            this.rbComma.TabIndex = 2;
+            this.rbComma.Text = "Разделитель \"запятая\"";
+            this.rbComma.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chkTable
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(147, 121);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkTable.AutoSize = true;
+            this.chkTable.Location = new System.Drawing.Point(12, 88);
+            this.chkTable.Name = "chkTable";
+            this.chkTable.Size = new System.Drawing.Size(102, 17);
+            this.chkTable.TabIndex = 5;
+            this.chkTable.TabStop = false;
+            this.chkTable.Text = "Новая таблица";
+            this.chkTable.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cmbQual
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 6;
+            this.cmbQual.FormattingEnabled = true;
+            this.cmbQual.Location = new System.Drawing.Point(69, 51);
+            this.cmbQual.Name = "cmbQual";
+            this.cmbQual.Size = new System.Drawing.Size(100, 21);
+            this.cmbQual.TabIndex = 2;
             // 
-            // textBox1
+            // txbRange
             // 
-            this.textBox1.Location = new System.Drawing.Point(72, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
+            this.txbRange.Location = new System.Drawing.Point(69, 15);
+            this.txbRange.Name = "txbRange";
+            this.txbRange.Size = new System.Drawing.Size(100, 20);
+            this.txbRange.TabIndex = 1;
             // 
-            // label2
+            // lblQual
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Квалитет";
+            this.lblQual.AutoSize = true;
+            this.lblQual.Location = new System.Drawing.Point(9, 54);
+            this.lblQual.Name = "lblQual";
+            this.lblQual.Size = new System.Drawing.Size(54, 13);
+            this.lblQual.TabIndex = 8;
+            this.lblQual.Text = "Квалитет";
             // 
-            // button1
+            // btn
             // 
-            this.button1.Location = new System.Drawing.Point(147, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn.Location = new System.Drawing.Point(162, 105);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(75, 23);
+            this.btn.TabIndex = 9;
+            this.btn.TabStop = false;
+            this.btn.Text = "Вывод";
+            this.btn.UseVisualStyleBackColor = true;
+            // 
+            // txbOutput
+            // 
+            this.txbOutput.Location = new System.Drawing.Point(12, 161);
+            this.txbOutput.Name = "txbOutput";
+            this.txbOutput.Size = new System.Drawing.Size(225, 20);
+            this.txbOutput.TabIndex = 10;
+            this.txbOutput.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 255);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(245, 193);
+            this.Controls.Add(this.txbOutput);
+            this.Controls.Add(this.btn);
+            this.Controls.Add(this.lblQual);
+            this.Controls.Add(this.txbRange);
+            this.Controls.Add(this.cmbQual);
+            this.Controls.Add(this.chkTable);
+            this.Controls.Add(this.rbComma);
+            this.Controls.Add(this.rbPoint);
+            this.Controls.Add(this.lblRange);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -134,14 +145,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Label lblRange;
+        public System.Windows.Forms.RadioButton rbPoint;
+        public System.Windows.Forms.RadioButton rbComma;
+        public System.Windows.Forms.CheckBox chkTable;
+        public System.Windows.Forms.ComboBox cmbQual;
+        public System.Windows.Forms.TextBox txbRange;
+        public System.Windows.Forms.Label lblQual;
+        public System.Windows.Forms.Button btn;
+        public System.Windows.Forms.TextBox txbOutput;
     }
 }
 

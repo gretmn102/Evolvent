@@ -16,6 +16,7 @@ let comboBox1 = new System.Windows.Forms.ComboBox();
 let checkBox1 = new System.Windows.Forms.CheckBox()
 let table1 = Program.table1
 let table2 = Program.table2
+
 let getDB _ = 
         match Int32.TryParse rangeInput.Text with
         | false, _ -> printfn "число, быдло!"
@@ -76,7 +77,6 @@ radioButton1.TabStopChanged.Add (fun _ -> radioButton1.TabStop <- false)
 radioButton1.Text <- "Разделитель \"точка\"";
 radioButton1.UseVisualStyleBackColor <- true;
 
-
 // 
 // radioButton2
 // 
@@ -102,8 +102,6 @@ rangeInput.KeyPress.Add (fun e ->
                                 e.Handled <- true
                                 printfn "%s число, быдло!" s)
 rangeInput.Enter.Add (fun _ -> rangeInput.SelectAll())
-
-
 
 // 
 // qualInput
@@ -143,6 +141,63 @@ outputTxtBox.TabStop <- false
 outputTxtBox.Text <- "outputTxtBox";
 
 
+type nform =
+    inherit WindowsFormsApplication1.Form1
+    val getDB : EventArgs -> unit
+
+    member this.Init() =
+        this.chkTable.CheckedChanged.Add(fun _ -> 
+                                this.cmbQual.Text <- ""
+                                this.cmbQual.Items.Clear()
+                                let x = if this.chkTable.Checked then table1.Quals else table2.Quals
+                                this.cmbQual.Items.AddRange x)
+        
+        this.rbComma.TabStopChanged.Add (fun _ -> this.rbComma.TabStop <- false)
+        this.rbPoint.TabStopChanged.Add (fun _ -> this.rbPoint.TabStop <- false)
+
+        this.btn.Click.Add( this.getDB )
+
+        this.txbRange.KeyPress.Add (fun e ->
+                            let s = e.KeyChar.ToString()
+                            if not <| System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(), @"\d+|[\b]|\r") then
+                                e.Handled <- true
+                                printfn "%s число, быдло!" s)
+        this.txbRange.Enter.Add (fun _ -> this.txbRange.SelectAll())
+
+        this.cmbQual.Items.AddRange( table2.Quals )
+
+    new () as this = //Form()
+        {
+             inherit WindowsFormsApplication1.Form1()
+             getDB = (fun _ ->
+                    match Int32.TryParse this.txbRange.Text with
+                    | false, _ -> printfn "число, быдло!"
+                    | true, r ->
+                            this.txbOutput.Text <- 
+                                let f = if this.chkTable.Checked then table1.getVal else table2.getVal
+                                match f r this.cmbQual.Text (fun () -> MessageBox.Show("Error range") |> ignore) (fun () -> MessageBox.Show("Error qual") |> ignore) with
+                                | Some r -> 
+                                    let r =
+                                        match this.rbPoint.Checked with
+                                        | true -> r.Replace(',', '.')
+                                        | false -> r
+                                    let t = new System.Threading.Thread( fun () -> Clipboard.SetText r )
+                                    t.SetApartmentState( System.Threading.ApartmentState.STA)
+                                    t.Start()
+                                    t.Join()
+                                    r
+                                | None -> "")
+        }
+        then
+            //let x = 10
+            this.Init()
+
+    override this.ProcessCmdKey(msg, keyData) = 
+        let code = keyData &&& Keys.KeyCode
+        match code with
+        | Keys.Enter -> this.getDB( null )
+        | _ -> ()
+        base.ProcessCmdKey(ref msg, keyData)
 
 // 
 // Form
@@ -181,7 +236,7 @@ type newForm =
 
 [<EntryPoint; STAThread>]
 let Main args =
-
+    (*
     let form = new newForm()
     form.AutoScaleDimensions <- new System.Drawing.SizeF(6.0f, 13.0f);
     form.AutoScaleMode <- System.Windows.Forms.AutoScaleMode.Font;
@@ -200,9 +255,12 @@ let Main args =
     form.Text <- "Form1";
     form.ResumeLayout(false);
     form.PerformLayout();
-
+    
     form.Show()
-    //CsvParse.main
+    *)
+
+    let form = new nform()
+    form.Show()
     Application.Run(form)
     0
     
