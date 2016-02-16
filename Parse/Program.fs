@@ -13,8 +13,8 @@ let main args =
     let rows = file.Split( [|"\r\n"|], StringSplitOptions.None)
     let columns = rows |> Seq.map (fun x -> x.Split ';' |> List.ofSeq) |> List.ofSeq
 
-    let qual = columns
-               |> List.head
+    let qual = List.head columns
+               
     
     let f =
         List.map (fun x -> 
@@ -46,7 +46,7 @@ let main args =
         |> List.map (List.tail)
         |> List.map f
 
- 
+    /// <summary>Заменяет Up'ы на верхние величины</summary>
     let values2 =
         let f' =
                 List.tail
@@ -54,8 +54,10 @@ let main args =
                     x |> List.mapi (fun j y -> 
                         if j < 36 then
                             match y with
+                            | None -> y
                             | Up -> 
                                 let rec f'' i = 
+                                    let k = values.[i]
                                     let current = (values.[i]).[j]
                                     if current = Up then
                                         f'' (i - 1)
@@ -71,7 +73,8 @@ let main args =
         values2
         |> List.map (List.map (fun x ->
                                         let erase a b = 
-                                            //a + " " + b
+                                            a + " " + b
+                                            (*
                                             let form =
                                                 function
                                                 | "" -> ""
@@ -79,12 +82,12 @@ let main args =
                                                     let n = Double.Parse(s) / 1000.0
                                                     if n > 0.0 then "+" + n.ToString() else n.ToString()
                                             String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", form a, form b)
-                                        
+                                            *)
                                         match x with
                                         | None -> "None"
                                         | S("", "") -> ""
-                                        | S("", b) | S("0", b) -> erase "" b
-                                        | S(a, "") | S(a, "0") -> erase a ""
+                                        | S("", b) | S("0", b) -> erase "0" b
+                                        | S(a, "") | S(a, "0") -> erase a "0"
                                         | S(a, b) -> erase a b
                                         | _ -> //"Up"
                                             failwith "откуда-то взялся UP"

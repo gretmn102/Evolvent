@@ -155,7 +155,7 @@ type nform =
         this.rbComma.TabStopChanged.Add (fun _ -> this.rbComma.TabStop <- false)
         this.rbPoint.TabStopChanged.Add (fun _ -> this.rbPoint.TabStop <- false)
 
-        this.btn.Click.Add( this.getDB )
+        //this.btn.Click.Add( this.getDB )
 
         this.txbRange.KeyPress.Add (fun e ->
                             let s = e.KeyChar.ToString()
@@ -172,7 +172,8 @@ type nform =
              getDB = (fun _ ->
                     match Int32.TryParse this.txbRange.Text with
                     | false, _ -> printfn "число, быдло!"
-                    | true, r ->
+                    | true, r -> ()
+                            (*
                             this.txbOutput.Text <- 
                                 let f = if this.chkTable.Checked then table1.getVal else table2.getVal
                                 match f r this.cmbQual.Text (fun () -> MessageBox.Show("Error range") |> ignore) (fun () -> MessageBox.Show("Error qual") |> ignore) with
@@ -186,7 +187,7 @@ type nform =
                                     t.Start()
                                     t.Join()
                                     r
-                                | None -> "")
+                                | None -> "" *) )
         }
         then
             //let x = 10

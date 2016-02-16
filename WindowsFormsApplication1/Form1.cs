@@ -15,6 +15,21 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+
+        private void chkTable_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         /*
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
