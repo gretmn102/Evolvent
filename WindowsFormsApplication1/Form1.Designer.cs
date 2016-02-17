@@ -28,49 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rbPoint = new System.Windows.Forms.RadioButton();
-            this.rbComma = new System.Windows.Forms.RadioButton();
-            this.chkTable = new System.Windows.Forms.CheckBox();
+            this.rbT1 = new System.Windows.Forms.RadioButton();
+            this.rbT2 = new System.Windows.Forms.RadioButton();
+            this.chkComma = new System.Windows.Forms.CheckBox();
             this.cmbQual = new System.Windows.Forms.ComboBox();
             this.txbRange = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txbT11 = new System.Windows.Forms.TextBox();
+            this.txbT21 = new System.Windows.Forms.TextBox();
+            this.txbT12 = new System.Windows.Forms.TextBox();
+            this.txbT22 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.txbOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // rbPoint
+            // rbT1
             // 
-            this.rbPoint.AutoSize = true;
-            this.rbPoint.Checked = true;
-            this.rbPoint.Location = new System.Drawing.Point(252, 15);
-            this.rbPoint.Name = "rbPoint";
-            this.rbPoint.Size = new System.Drawing.Size(14, 13);
-            this.rbPoint.TabIndex = 3;
-            this.rbPoint.TabStop = true;
-            this.rbPoint.UseVisualStyleBackColor = true;
+            this.rbT1.AutoSize = true;
+            this.rbT1.Checked = true;
+            this.rbT1.Location = new System.Drawing.Point(252, 15);
+            this.rbT1.Name = "rbT1";
+            this.rbT1.Size = new System.Drawing.Size(14, 13);
+            this.rbT1.TabIndex = 3;
+            this.rbT1.TabStop = true;
+            this.rbT1.UseVisualStyleBackColor = true;
             // 
-            // rbComma
+            // rbT2
             // 
-            this.rbComma.AutoSize = true;
-            this.rbComma.Location = new System.Drawing.Point(354, 15);
-            this.rbComma.Name = "rbComma";
-            this.rbComma.Size = new System.Drawing.Size(14, 13);
-            this.rbComma.TabIndex = 2;
-            this.rbComma.UseVisualStyleBackColor = true;
+            this.rbT2.AutoSize = true;
+            this.rbT2.Location = new System.Drawing.Point(354, 15);
+            this.rbT2.Name = "rbT2";
+            this.rbT2.Size = new System.Drawing.Size(14, 13);
+            this.rbT2.TabIndex = 2;
+            this.rbT2.UseVisualStyleBackColor = true;
             // 
-            // chkTable
+            // chkComma
             // 
-            this.chkTable.AutoSize = true;
-            this.chkTable.Location = new System.Drawing.Point(383, 14);
-            this.chkTable.Name = "chkTable";
-            this.chkTable.Size = new System.Drawing.Size(29, 17);
-            this.chkTable.TabIndex = 5;
-            this.chkTable.TabStop = false;
-            this.chkTable.Text = ",";
-            this.chkTable.UseVisualStyleBackColor = true;
-            this.chkTable.CheckedChanged += new System.EventHandler(this.chkTable_CheckedChanged);
+            this.chkComma.AutoSize = true;
+            this.chkComma.Location = new System.Drawing.Point(383, 14);
+            this.chkComma.Name = "chkComma";
+            this.chkComma.Size = new System.Drawing.Size(29, 17);
+            this.chkComma.TabIndex = 5;
+            this.chkComma.TabStop = false;
+            this.chkComma.Text = ",";
+            this.chkComma.UseVisualStyleBackColor = true;
+            this.chkComma.CheckedChanged += new System.EventHandler(this.chkTable_CheckedChanged);
             // 
             // cmbQual
             // 
@@ -82,40 +83,44 @@
             // 
             // txbRange
             // 
-            this.txbRange.Location = new System.Drawing.Point(1, 12);
+            this.txbRange.Location = new System.Drawing.Point(2, 12);
             this.txbRange.Name = "txbRange";
             this.txbRange.Size = new System.Drawing.Size(45, 20);
             this.txbRange.TabIndex = 1;
             // 
-            // textBox1
+            // txbT11
             // 
-            this.textBox1.Location = new System.Drawing.Point(170, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(35, 20);
-            this.textBox1.TabIndex = 11;
+            this.txbT11.Location = new System.Drawing.Point(170, 12);
+            this.txbT11.Name = "txbT11";
+            this.txbT11.ReadOnly = true;
+            this.txbT11.Size = new System.Drawing.Size(35, 20);
+            this.txbT11.TabIndex = 11;
             // 
-            // textBox2
+            // txbT21
             // 
-            this.textBox2.Location = new System.Drawing.Point(272, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(35, 20);
-            this.textBox2.TabIndex = 12;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txbT21.Location = new System.Drawing.Point(272, 12);
+            this.txbT21.Name = "txbT21";
+            this.txbT21.ReadOnly = true;
+            this.txbT21.Size = new System.Drawing.Size(35, 20);
+            this.txbT21.TabIndex = 12;
+            this.txbT21.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // textBox3
+            // txbT12
             // 
-            this.textBox3.Location = new System.Drawing.Point(211, 12);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(35, 20);
-            this.textBox3.TabIndex = 13;
+            this.txbT12.Location = new System.Drawing.Point(211, 12);
+            this.txbT12.Name = "txbT12";
+            this.txbT12.ReadOnly = true;
+            this.txbT12.Size = new System.Drawing.Size(35, 20);
+            this.txbT12.TabIndex = 13;
             // 
-            // textBox4
+            // txbT22
             // 
-            this.textBox4.Location = new System.Drawing.Point(313, 12);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(35, 20);
-            this.textBox4.TabIndex = 14;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.txbT22.Location = new System.Drawing.Point(313, 12);
+            this.txbT22.Name = "txbT22";
+            this.txbT22.ReadOnly = true;
+            this.txbT22.Size = new System.Drawing.Size(35, 20);
+            this.txbT22.TabIndex = 14;
+            this.txbT22.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // checkBox1
             // 
@@ -127,21 +132,30 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // txbOutput
+            // 
+            this.txbOutput.Location = new System.Drawing.Point(2, 39);
+            this.txbOutput.Name = "txbOutput";
+            this.txbOutput.ReadOnly = true;
+            this.txbOutput.Size = new System.Drawing.Size(169, 20);
+            this.txbOutput.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 36);
+            this.ClientSize = new System.Drawing.Size(507, 34);
+            this.Controls.Add(this.txbOutput);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbT22);
+            this.Controls.Add(this.txbT12);
+            this.Controls.Add(this.txbT21);
+            this.Controls.Add(this.txbT11);
             this.Controls.Add(this.txbRange);
             this.Controls.Add(this.cmbQual);
-            this.Controls.Add(this.chkTable);
-            this.Controls.Add(this.rbComma);
-            this.Controls.Add(this.rbPoint);
+            this.Controls.Add(this.chkComma);
+            this.Controls.Add(this.rbT2);
+            this.Controls.Add(this.rbT1);
             this.Name = "Form1";
             this.Text = " ";
             this.ResumeLayout(false);
@@ -151,16 +165,17 @@
 
         #endregion
 
-        public System.Windows.Forms.RadioButton rbPoint;
-        public System.Windows.Forms.RadioButton rbComma;
-        public System.Windows.Forms.CheckBox chkTable;
+        public System.Windows.Forms.RadioButton rbT1;
+        public System.Windows.Forms.RadioButton rbT2;
+        public System.Windows.Forms.CheckBox chkComma;
         public System.Windows.Forms.ComboBox cmbQual;
         public System.Windows.Forms.TextBox txbRange;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.TextBox txbT11;
+        public System.Windows.Forms.TextBox txbT21;
+        public System.Windows.Forms.TextBox txbT12;
+        public System.Windows.Forms.TextBox txbT22;
+        public System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.TextBox txbOutput;
     }
 }
 

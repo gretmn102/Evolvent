@@ -3,56 +3,27 @@ open System
 open System.Reflection
 open System.IO
 open System.Collections.Generic
+open System.Runtime.Serialization.Formatters.Binary
 
+type Table(file:Stream) =
+    let ser = 
+        use fileStream = file //new FileStream(file, FileMode.Open)
+        let bf = new BinaryFormatter()
+        let result = bf.Deserialize(fileStream)
+        (result :?> string list * (float*float) list * (float*float) option list list)
 
-(*
-let fu =
-    new ResolveEventHandler( fun obj arg ->
-        
-        let resourceName = "AssemblyLoadingAndReflection." + (new AssemblyName(arg.Name)).Name + ".dll";
-        using (Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-                (fun stream ->
-                    let assemblyData:byte [] = Array.empty // [||] // [stream.Length];
-                    stream.Read(assemblyData, 0, assemblyData.Length);
-                  
-                    Assembly.Load(assemblyData)))
-
-AppDomain.CurrentDomain.add_AssemblyResolve( fu )
-*)
-
-
-type Table(file:string) =
-    let f =
-        (file.Replace ("\r", "")).Split '\n'
-        |> Seq.filter (fun x -> x <> "")
-        |> Seq.map (fun x -> x.Split '\t' |> List.ofSeq)
-        |> List.ofSeq
-    // диапазоны
     let ranges =
-        f
-        |> List.tail
-        |> List.map (List.head)
-        |> List.mapi (fun i value -> 
-                                let range = value.Split ','
-                                if range.Length <> 2 then
-                                    failwithf "диапазон ныверный %s" value
-                                else
-                                    let p str = 
-                                        match Int32.TryParse str with
-                                        | false, _ -> failwithf "не распознано число %s" str
-                                        | true, r -> r
-                                    (p range.[0], p range.[1]), i)
-    let db =
-        f
-        |> List.tail
-        |> List.map List.tail
+        let _, r, _ = ser
+        r |> List.mapi (fun i x -> x, i)
 
-    /// <summary> Квалитеты </summary>
+    let db =
+        let _, _, v = ser
+        v
+
     let quals =
-        f
-        |> List.head
-        |> List.tail
-        |> List.mapi (fun i value -> value, i)
+        let q, _, _ = ser
+        q |> List.tail
+        |> List.mapi (fun i x -> x, i)
         |> Map.ofList
 
     member this.Quals =
@@ -60,22 +31,24 @@ type Table(file:string) =
         |> Seq.map (fun x -> box x.Key)
         |> Array.ofSeq
 
-    member this.getVal nRange qual rangeError qualError = 
+    member this.GetVal nRange qual rangeErrorMsg qualErrorMsg = 
         ranges
         |> List.tryFind (fun ((min, max), _) -> min <= nRange && nRange < max)
         |> (function 
-            | None -> rangeError (); None
+            | None -> rangeErrorMsg (); None
             | Some(_, range) ->
                 match quals.TryFind qual with
                 | Some(x) -> Some (db.[range]).[x]
-                | None -> qualError(); None)
+                | None -> qualErrorMsg(); None)
 
 let loadRes resourceName =
     let assembly = Assembly.GetExecutingAssembly()
+    let res = assembly.GetManifestResourceNames()
     using (assembly.GetManifestResourceStream(resourceName))
             (fun stream -> 
             using (new StreamReader(stream, Text.Encoding.UTF8))
                     (fun reader -> reader.ReadToEnd()))
-//let res = assembly.GetManifestResourceNames()
-let table1 = new Table(loadRes "input.txt")
-let table2 = new Table(loadRes "input2.txt")
+    assembly.GetManifestResourceStream(resourceName)
+
+let table1 = new Table(loadRes "input.dat")
+let table2 = new Table(loadRes "input2.dat")
