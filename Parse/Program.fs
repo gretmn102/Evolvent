@@ -29,78 +29,80 @@ let main args =
                 | _ -> failwithf "чисел в диапазоне больше двух %A" m)
 
     let range =
-        let toDouble = function
-            | "" -> 0.0
-            | x -> Double.Parse x 
-        let l = 
-            columns
-            |> List.tail
-            |> List.map (List.head)
-            |> f
-            |> List.filter (function S _ -> true | _ -> false)
-        l |> List.map (function
-                         | S("", "") -> 0.0, 0.0
-                         | S("", a) -> 0.0, toDouble a
-                         | S(a, "") -> toDouble a, 0.0
-                         | S(a, b) -> toDouble a, toDouble b
-                         | a -> failwith "")
+        let toDouble x = 
+            let erase a b = 
+                let f = function
+                | "" -> 0.0
+                | x -> Double.Parse x              
+                (f a, f b)
 
-    let values =
+            match x with
+            | S(a, b) -> erase a b
+            | a -> failwithf "некуда вставить %A" a
+
         columns
         |> List.tail
-        |> List.map (List.tail)
-        |> List.map f
+        |> List.map (List.head)
+        |> f
+        // Костыль. В теории, в данном списке не должно быть ничего кроме S, однако в конце появляется Up
+        |> List.filter (function S _ -> true | _ -> false)
+        |> List.map (toDouble)
 
-    /// <summary>Заменяет Up'ы на верхние величины</summary>
-    let values2 =
-        let f' =
-                List.tail
-                >> List.mapi (fun i x ->
-                    x |> List.mapi (fun j y -> 
-                        if j < 36 then
-                            match y with
-                            | None -> y
-                            | Up -> 
-                                let rec f'' i = 
-                                    let k = values.[i]
-                                    let current = (values.[i]).[j]
-                                    if current = Up then
-                                        f'' (i - 1)
-                                    else
-                                        current
-                                f'' i
-                            | _ -> y
-                        else
-                            y))
-        values.Head :: ( f' values )
+    let values = 
+        let values =
+            columns
+            |> List.tail
+            |> List.map (List.tail)
+            |> List.map f
+        /// <summary> Transposes rectangular matrices </summary>
+        let transpose matrix =
+            let rec fetch_column acc (matr:'a list list) =
+                if matr.Head.Length = 0 then (List.rev acc)
+                else fetch_column
+                        ([for row in matr -> row.Head]::acc)
+                        (List.map (fun row -> match row with [] -> [] | h::t -> t) matr)
+            fetch_column [] matrix
+        
+        /// <summary> Заменяет Up'ы в матрице на верхние величины </summary>
+        let toUp values = 
+            let rec f last = function
+                | [] -> []
+                | Up :: t -> last :: f last t
+                | None :: t -> None :: f None t
+                | x :: t -> x :: f x t
 
-    let values3 =
-        values2
-        |> List.map (List.map (fun x ->
-                                        let erase a b = 
-                                            let f = function
-                                            | "" -> 0.0
-                                            | x -> Double.Parse x 
-                                            
-                                            Some(f a, f b)
+            values |> List.filter (List.length >> (<>) 0)
+            |> transpose //values
+            |> List.map (f None)
+            |> transpose
 
-                                        match x with
-                                        | None -> Option.None
-                                        | S("", "") -> Some (0.0, 0.0)
-                                        | S("", b) | S("0", b) -> erase "" b
-                                        | S(a, "") | S(a, "0") -> erase a ""
-                                        | S(a, b) -> erase a b
-                                        | _ -> //"Up"
-                                            failwith "откуда-то взялся UP"
-                                            ))
-    
-    (*
-    let other =
-        let rowf = List.reduce (fun x1 x2 -> x1 + "\t" + x2)
-        let t = values3 |> List.mapi (fun i x -> range.[i] :: x)
-        qual :: t
-        |> List.map rowf
-        *)
+        let toDouble x = 
+            let erase a b = 
+                let f = function
+                | "" -> 0.0
+                | x -> Double.Parse x            
+                Some(f a, f b)
+
+            match x with
+            | None -> Option.None
+            | S(a, b) -> erase a b
+            | Up -> failwith "откуда-то взялся UP"
+
+        toUp values 
+        |> List.map (List.map toDouble)
+
+    let writeRawToFile () =
+        let srange = range |> List.map (sprintf "%A")
+        let svalues = values |> List.map (List.map (function Option.None -> "Nan" | Some(a, b) -> "(" + a.ToString() + " " + b.ToString() + ")"))
+        
+        let all = 
+            let t = List.map2 (fun x1 x2 -> x1 :: x2) srange svalues
+            let rowf = List.reduce (fun x1 x2 -> x1 + "\t" + x2)
+            qual :: t
+            |> List.map rowf
+
+        File.WriteAllLines ("outputRaw.txt", all)
+        
     let saveDB() =
         let serializeThing thing =
             let bf = new BinaryFormatter()
@@ -109,12 +111,12 @@ let main args =
             bf.Serialize(mstream, thing)
             mstream.ToArray()
 
-        
-        let seqr = (qual, range, values3)
+        let seqr = (qual, range, values)
         let byteArr = serializeThing seqr
         use fileStream = new FileStream("output.dat", FileMode.Create)
         fileStream.Write(byteArr, 0, byteArr.Length)
         fileStream.Close()
     saveDB()
-    //File.WriteAllLines ("input.txt", other)
+    writeRawToFile ()
+
     0
