@@ -113,7 +113,7 @@ let main args =
 
         let seqr = (qual, range, values)
         let byteArr = serializeThing seqr
-        use fileStream = new FileStream("output.dat", FileMode.Create)
+        use fileStream = new FileStream(args.[0] + "1", FileMode.Create)
         fileStream.Write(byteArr, 0, byteArr.Length)
         fileStream.Close()
     saveDB()

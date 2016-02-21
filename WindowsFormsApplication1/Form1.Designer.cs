@@ -71,7 +71,6 @@
             this.chkComma.TabStop = false;
             this.chkComma.Text = ",";
             this.chkComma.UseVisualStyleBackColor = true;
-            this.chkComma.CheckedChanged += new System.EventHandler(this.chkTable_CheckedChanged);
             // 
             // cmbQual
             // 
@@ -103,7 +102,6 @@
             this.txbT21.ReadOnly = true;
             this.txbT21.Size = new System.Drawing.Size(35, 20);
             this.txbT21.TabIndex = 12;
-            this.txbT21.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // txbT12
             // 
@@ -120,7 +118,6 @@
             this.txbT22.ReadOnly = true;
             this.txbT22.Size = new System.Drawing.Size(35, 20);
             this.txbT22.TabIndex = 14;
-            this.txbT22.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // checkBox1
             // 

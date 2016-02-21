@@ -12,7 +12,9 @@ type nform =
     val getDB : EventArgs -> unit
 
     member this.Init() =
+        this.rbT1.CheckedChanged.Add (this.getDB)
         this.rbT1.TabStopChanged.Add (fun _ -> this.rbT1.TabStop <- false)
+        this.rbT2.CheckedChanged.Add (this.getDB)
         this.rbT2.TabStopChanged.Add (fun _ -> this.rbT2.TabStop <- false)
 
         this.txbRange.KeyPress.Add (fun e ->
@@ -22,6 +24,10 @@ type nform =
                                 this.txbOutput.Text <- "Число, быдло!")
         this.txbRange.Enter.Add (fun _ -> this.txbRange.SelectAll())
         
+        this.chkComma.CheckedChanged.Add (this.getDB)
+        
+        this.checkBox1.CheckedChanged.Add (this.getDB)
+
         let removeDups is =
             let d = System.Collections.Generic.Dictionary()
             [| for i in is do match d.TryGetValue i with
@@ -36,7 +42,7 @@ type nform =
              inherit WindowsFormsApplication1.Form1()
              getDB = (fun _ ->
                     match Double.TryParse this.txbRange.Text with
-                    | false, _ -> MessageBox.Show("число") |> ignore
+                    | false, _ -> MessageBox.Show("Введите число") |> ignore
                     | true, r ->
                                 let f tS1 tGet =
                                     let TSend1 s = tS1 s s
@@ -51,6 +57,8 @@ type nform =
                                                     let f n = 
                                                         let n = n / 1000.0
                                                         if n > 0.0 then "+" + n.ToString() else n.ToString()
+                                                    //if this.checkBox1.Checked then  String.Format ("{0}^{1}", f a, f b)
+                                                    //else 
                                                     String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", f a, f b)
                                             | None -> "NaN"
                                         format r
