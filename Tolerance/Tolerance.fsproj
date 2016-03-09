@@ -74,11 +74,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
-    <ProjectReference Include="..\Parse\Parse.fsproj">
-      <Name>Parse</Name>
-      <Project>{3d20e9bc-db29-448e-9938-a6473b83c0ca}</Project>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\WindowsFormsApplication1\WindowsFormsApplication1.csproj">
       <Name>WindowsFormsApplication1</Name>
       <Project>{d70e3ef0-d123-41fa-bbeb-b891c2c816dc}</Project>

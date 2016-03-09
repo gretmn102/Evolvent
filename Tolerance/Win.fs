@@ -42,7 +42,7 @@ type nform =
              inherit WindowsFormsApplication1.Form1()
              getDB = (fun _ ->
                     match Double.TryParse this.txbRange.Text with
-                    | false, _ -> MessageBox.Show("Введите число") |> ignore
+                    | false, _ -> () // MessageBox.Show("Введите число") |> ignore
                     | true, r ->
                                 let f tS1 tGet =
                                     let TSend1 s = tS1 s s
@@ -57,9 +57,9 @@ type nform =
                                                     let f n = 
                                                         let n = n / 1000.0
                                                         if n > 0.0 then "+" + n.ToString() else n.ToString()
-                                                    //if this.checkBox1.Checked then  String.Format ("{0}^{1}", f a, f b)
-                                                    //else 
-                                                    String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", f a, f b)
+                                                    if this.checkBox1.Checked then  String.Format ("{0}^{1}", f a, f b)
+                                                    else 
+                                                        String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", f a, f b)
                                             | None -> "NaN"
                                         format r
                                     | None -> "NaN"
@@ -98,8 +98,11 @@ type nform =
 
 [<EntryPoint; STAThread>]
 let Main args =
-    let form = new nform()
-    form.Show()
-    Application.Run(form)
+    try
+        let form = new nform()
+        form.Show()
+        Application.Run(form)
+    with
+    | e -> MessageBox.Show( e.Message ) |> ignore
     0
     
