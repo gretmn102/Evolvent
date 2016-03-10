@@ -27,8 +27,12 @@ type Table(file:Stream) =
         |> Map.ofList
 
     member this.Quals =
-        quals
+        (*quals
         |> Seq.map (fun x -> box x.Key)
+        |> Array.ofSeq*)
+        let q, _, _ = ser
+        q |> List.tail
+        |> Seq.map box
         |> Array.ofSeq
 
     member this.GetVal nRange qual rangeErrorMsg qualErrorMsg = 

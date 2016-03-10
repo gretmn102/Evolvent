@@ -28,7 +28,7 @@ type nform =
         this.chkComma.CheckedChanged.Add this.getDB
         this.chkStyle.CheckedChanged.Add this.getDB
         this.chkManual.CheckedChanged.Add this.getDB
-
+        (*
         let removeDups is =
             let d = System.Collections.Generic.Dictionary()
             [| for i in is do match d.TryGetValue i with
@@ -36,6 +36,9 @@ type nform =
                                 | _ -> () |]
         Array.append table1.Quals table2.Quals
         |> removeDups
+        |> this.cmbQual.Items.AddRange
+        *)
+        table1.Quals
         |> this.cmbQual.Items.AddRange
 
     new () as this =
