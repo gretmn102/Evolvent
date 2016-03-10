@@ -38,16 +38,16 @@ type Table(file:Stream) =
             | None -> rangeErrorMsg (); None
             | Some(_, range) ->
                 match quals.TryFind qual with
-                | Some(x) -> Some (db.[range]).[x]
-                | None -> qualErrorMsg(); None)
+                | None -> qualErrorMsg(); None
+                | Some(x) -> Some (db.[range]).[x])
 
 let loadRes resourceName =
     let assembly = Assembly.GetExecutingAssembly()
     let res = assembly.GetManifestResourceNames()
-    using (assembly.GetManifestResourceStream(resourceName))
+    (*using (assembly.GetManifestResourceStream(resourceName))
             (fun stream -> 
             using (new StreamReader(stream, Text.Encoding.UTF8))
-                    (fun reader -> reader.ReadToEnd()))
+                    (fun reader -> reader.ReadToEnd())) *)
     assembly.GetManifestResourceStream(resourceName)
 
 let table1 = new Table(loadRes "input.dat")

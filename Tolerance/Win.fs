@@ -3,12 +3,13 @@
 open System
 open System.Drawing
 open System.Windows.Forms
+open System.Text.RegularExpressions
 
 let table1 = Program.table1
 let table2 = Program.table2
 
 type nform =
-    inherit WindowsFormsApplication1.Form1
+    inherit GUI.MainForm
     val getDB : EventArgs -> unit
 
     member this.Init() =
@@ -24,9 +25,9 @@ type nform =
                                 this.txbOutput.Text <- "Число, быдло!")
         this.txbRange.Enter.Add (fun _ -> this.txbRange.SelectAll())
         
-        this.chkComma.CheckedChanged.Add (this.getDB)
-        
-        this.checkBox1.CheckedChanged.Add (this.getDB)
+        this.chkComma.CheckedChanged.Add this.getDB
+        this.chkStyle.CheckedChanged.Add this.getDB
+        this.chkManual.CheckedChanged.Add this.getDB
 
         let removeDups is =
             let d = System.Collections.Generic.Dictionary()
@@ -39,7 +40,7 @@ type nform =
 
     new () as this =
         {
-             inherit WindowsFormsApplication1.Form1()
+             inherit GUI.MainForm()
              getDB = (fun _ ->
                     match Double.TryParse this.txbRange.Text with
                     | false, _ -> () // MessageBox.Show("Введите число") |> ignore
@@ -47,7 +48,7 @@ type nform =
                                 let f tS1 tGet =
                                     let TSend1 s = tS1 s s
                                     match tGet r this.cmbQual.Text (fun () -> TSend1 "r err") (fun () -> TSend1 "q err") with
-                                    | Some r -> 
+                                    | Some r ->
                                         let f = function 
                                             | Some(a, b) -> tS1 (a.ToString()) (b.ToString())
                                             | None -> TSend1 "NaN"
@@ -57,9 +58,15 @@ type nform =
                                                     let f n = 
                                                         let n = n / 1000.0
                                                         if n > 0.0 then "+" + n.ToString() else n.ToString()
-                                                    if this.checkBox1.Checked then  String.Format ("{0}^{1}", f a, f b)
-                                                    else 
-                                                        String.Format ("<>{{\\H0,5x;\\S{0}^{1};}}", f a, f b)
+                                                    
+                                                    let s = if this.chkManual.Checked then this.txbRange.Text else "<>"
+
+                                                    if this.chkStyle.Checked then
+                                                        let latest = Regex.Match(this.cmbQual.Text, "[^\s]+$")
+                                                        s + String.Format ("{0}{{{1}^{2}}}", latest, f a, f b)
+                                                    else
+                                                        let first = Regex.Match(this.cmbQual.Text, "^[^\s]+").Value
+                                                        s + String.Format ("{0}{{\\H0,5x;\\S{1}^{2};}}", first, f a, f b)
                                             | None -> "NaN"
                                         format r
                                     | None -> "NaN"
