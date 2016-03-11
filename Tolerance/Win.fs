@@ -28,6 +28,11 @@ type nform =
         this.chkComma.CheckedChanged.Add this.getDB
         this.chkStyle.CheckedChanged.Add this.getDB
         this.chkManual.CheckedChanged.Add this.getDB
+
+        //this.BackColor <- Color.AliceBlue
+        this.btnStyle.Click.Add (fun _ ->
+                                let r = this.colorDialog1.ShowDialog()
+                                this.BackColor <- this.colorDialog1.Color)
         (*
         let removeDups is =
             let d = System.Collections.Generic.Dictionary()
