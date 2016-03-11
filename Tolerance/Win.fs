@@ -33,6 +33,8 @@ type nform =
         this.btnStyle.Click.Add (fun _ ->
                                 let r = this.colorDialog1.ShowDialog()
                                 this.BackColor <- this.colorDialog1.Color)
+
+        this.comboBox1.SelectedIndexChanged.Add this.getDB
         (*
         let removeDups is =
             let d = System.Collections.Generic.Dictionary()
@@ -68,13 +70,26 @@ type nform =
                                                         if n > 0.0 then "+" + n.ToString() else n.ToString()
                                                     
                                                     let s = if this.chkManual.Checked then this.txbRange.Text else "<>"
-
-                                                    if this.chkStyle.Checked then
-                                                        let latest = Regex.Match(this.cmbQual.Text, "[^\s]+$")
-                                                        s + String.Format ("{0}{{{1}^{2}}}", latest, f a, f b)
-                                                    else
-                                                        let first = Regex.Match(this.cmbQual.Text, "^[^\s]+").Value
-                                                        s + String.Format ("{0}{{\\H0,5x;\\S{1}^{2};}}", first, f a, f b)
+                                                    let s2 = 
+                                                        match this.comboBox1.SelectedItem :?> string with
+                                                        | "-" -> ""
+                                                        | "Ø" -> "%%c"
+                                                        | x -> x
+                                                    let s3 = if this.rbT2.Checked then Regex.Match(this.cmbQual.Text, "[^\s]+$").Value else Regex.Match(this.cmbQual.Text, "^[^\s]+").Value
+                                                    
+                                                    let s4 = 
+                                                        (*
+                                                        if this.chkStyle.Checked then
+                                                            let latest = Regex.Match(this.cmbQual.Text, "[^\s]+$")
+                                                            s2 + s + String.Format ("{0}{1}^{2}", latest, f a, f b)
+                                                        else
+                                                            let first = Regex.Match(this.cmbQual.Text, "^[^\s]+").Value
+                                                            s2 + s + String.Format ("{0}({{\\H0,5x;\\S{1}^{2};}})", first, f a, f b) *)
+                                                        if this.chkStyle.Checked then
+                                                            String.Format ("{0}^{1}", f a, f b)
+                                                        else
+                                                            String.Format ("({{\\H0,5x;\\S{0}^{1};}})", f a, f b)
+                                                    s2 + s + s3 + s4
                                             | None -> "NaN"
                                         format r
                                     | None -> "NaN"

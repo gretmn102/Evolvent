@@ -41,7 +41,6 @@
             this.txbOutput = new System.Windows.Forms.TextBox();
             this.chkManual = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnStyle = new System.Windows.Forms.Button();
@@ -51,7 +50,7 @@
             // 
             this.rbT1.AutoSize = true;
             this.rbT1.Checked = true;
-            this.rbT1.Location = new System.Drawing.Point(330, 12);
+            this.rbT1.Location = new System.Drawing.Point(330, 14);
             this.rbT1.Name = "rbT1";
             this.rbT1.Size = new System.Drawing.Size(14, 13);
             this.rbT1.TabIndex = 3;
@@ -61,7 +60,7 @@
             // rbT2
             // 
             this.rbT2.AutoSize = true;
-            this.rbT2.Location = new System.Drawing.Point(438, 12);
+            this.rbT2.Location = new System.Drawing.Point(438, 14);
             this.rbT2.Name = "rbT2";
             this.rbT2.Size = new System.Drawing.Size(14, 13);
             this.rbT2.TabIndex = 2;
@@ -70,7 +69,7 @@
             // chkComma
             // 
             this.chkComma.AutoSize = true;
-            this.chkComma.Location = new System.Drawing.Point(460, 11);
+            this.chkComma.Location = new System.Drawing.Point(460, 13);
             this.chkComma.Name = "chkComma";
             this.chkComma.Size = new System.Drawing.Size(15, 14);
             this.chkComma.TabIndex = 5;
@@ -81,7 +80,7 @@
             // 
             this.cmbQual.Font = new System.Drawing.Font("DejaVu Sans Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmbQual.FormattingEnabled = true;
-            this.cmbQual.Location = new System.Drawing.Point(102, 7);
+            this.cmbQual.Location = new System.Drawing.Point(102, 10);
             this.cmbQual.MaxDropDownItems = 50;
             this.cmbQual.Name = "cmbQual";
             this.cmbQual.Size = new System.Drawing.Size(136, 21);
@@ -89,14 +88,14 @@
             // 
             // txbRange
             // 
-            this.txbRange.Location = new System.Drawing.Point(49, 7);
+            this.txbRange.Location = new System.Drawing.Point(49, 10);
             this.txbRange.Name = "txbRange";
             this.txbRange.Size = new System.Drawing.Size(45, 20);
             this.txbRange.TabIndex = 1;
             // 
             // txbT11
             // 
-            this.txbT11.Location = new System.Drawing.Point(244, 8);
+            this.txbT11.Location = new System.Drawing.Point(244, 10);
             this.txbT11.Name = "txbT11";
             this.txbT11.ReadOnly = true;
             this.txbT11.Size = new System.Drawing.Size(35, 20);
@@ -104,7 +103,7 @@
             // 
             // txbT21
             // 
-            this.txbT21.Location = new System.Drawing.Point(352, 8);
+            this.txbT21.Location = new System.Drawing.Point(352, 10);
             this.txbT21.Name = "txbT21";
             this.txbT21.ReadOnly = true;
             this.txbT21.Size = new System.Drawing.Size(35, 20);
@@ -112,7 +111,7 @@
             // 
             // txbT12
             // 
-            this.txbT12.Location = new System.Drawing.Point(287, 8);
+            this.txbT12.Location = new System.Drawing.Point(287, 10);
             this.txbT12.Name = "txbT12";
             this.txbT12.ReadOnly = true;
             this.txbT12.Size = new System.Drawing.Size(35, 20);
@@ -120,7 +119,7 @@
             // 
             // txbT22
             // 
-            this.txbT22.Location = new System.Drawing.Point(395, 8);
+            this.txbT22.Location = new System.Drawing.Point(395, 10);
             this.txbT22.Name = "txbT22";
             this.txbT22.ReadOnly = true;
             this.txbT22.Size = new System.Drawing.Size(35, 20);
@@ -129,7 +128,7 @@
             // chkStyle
             // 
             this.chkStyle.AutoSize = true;
-            this.chkStyle.Location = new System.Drawing.Point(483, 11);
+            this.chkStyle.Location = new System.Drawing.Point(483, 13);
             this.chkStyle.Name = "chkStyle";
             this.chkStyle.Size = new System.Drawing.Size(15, 14);
             this.chkStyle.TabIndex = 15;
@@ -146,7 +145,7 @@
             // chkManual
             // 
             this.chkManual.AutoSize = true;
-            this.chkManual.Location = new System.Drawing.Point(506, 11);
+            this.chkManual.Location = new System.Drawing.Point(506, 13);
             this.chkManual.Name = "chkManual";
             this.chkManual.Size = new System.Drawing.Size(15, 14);
             this.chkManual.TabIndex = 17;
@@ -154,28 +153,22 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "-",
             "Ø",
             "R",
             "M"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 7);
+            this.comboBox1.SelectedIndex = 0;
+            this.comboBox1.Location = new System.Drawing.Point(6, 10);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(35, 21);
             this.comboBox1.TabIndex = 18;
             // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(529, 8);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(89, 21);
-            this.comboBox2.TabIndex = 19;
-            // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(624, 9);
+            this.btnExit.Location = new System.Drawing.Point(608, 11);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(20, 18);
             this.btnExit.TabIndex = 20;
@@ -185,7 +178,7 @@
             // 
             // btnStyle
             // 
-            this.btnStyle.Location = new System.Drawing.Point(529, 33);
+            this.btnStyle.Location = new System.Drawing.Point(527, 9);
             this.btnStyle.Name = "btnStyle";
             this.btnStyle.Size = new System.Drawing.Size(75, 23);
             this.btnStyle.TabIndex = 21;
@@ -197,10 +190,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(655, 63);
+            this.ClientSize = new System.Drawing.Size(635, 63);
             this.Controls.Add(this.btnStyle);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.chkManual);
             this.Controls.Add(this.txbOutput);
@@ -238,8 +230,7 @@
         public System.Windows.Forms.TextBox txbT22;
         public System.Windows.Forms.CheckBox chkStyle;
         public System.Windows.Forms.TextBox txbOutput;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.CheckBox chkManual;
         private System.Windows.Forms.Button btnExit;
         public System.Windows.Forms.ColorDialog colorDialog1;
